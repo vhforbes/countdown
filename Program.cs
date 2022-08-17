@@ -1,0 +1,53 @@
+﻿using System;
+
+namespace Stopwatch
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Menu();
+        }
+
+        static void Menu()
+        {
+            Console.WriteLine("S - Seconds => 10s = 10 seconds");
+            Console.WriteLine("M - Minuts => 1m = 1 minute");
+            Console.WriteLine("How much time?");
+
+            string data = Console.ReadLine().ToLower();
+            char type = char.Parse(data.Substring(data.Length - 1, 1));
+            int time = int.Parse(data.Substring(0, data.Length - 1));
+            int multiplier = 1;
+
+            if (type == 'm')
+                multiplier = 60;
+
+            if (time == 0)
+                System.Environment.Exit(0);
+
+            Start(time * multiplier);
+
+        }
+
+        static void Start(int time)
+        {
+            int currentTime = 0;
+
+            while (currentTime != time)
+            {
+                Console.Clear();
+                currentTime++;
+                Console.WriteLine(currentTime);
+                Thread.Sleep(1000);
+            }
+
+            Console.Clear();
+            Console.WriteLine("Countdown over...");
+            Thread.Sleep(2500);
+            Menu();
+        }
+    }
+
+}
+// See https://aka.ms/new-console-template for more information
